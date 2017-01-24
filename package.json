@@ -1,0 +1,26 @@
+{
+  "name": "mean-to-do",
+  "version": "1.0.0",
+  "description": "to-do app with the MEAN stack",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brycemholland/meanToDo.git"
+  },
+  "keywords": [
+    "mean"
+  ],
+  "author": "Bryce Holland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brycemholland/meanToDo/issues"
+  },
+  "homepage": "https://github.com/brycemholland/meanToDo#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
