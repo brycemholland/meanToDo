@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Bryce Holland",
+    "email": "brycemholland@gmail.com",
+    "to-do-list": [
+      "do work",
+      "make MEAN apps",
+      "play games"
+    ]
+  }, {
+    "name": "Kate Holland",
+    "email": "kate.leticia@gmail.com",
+    "to-do-list": [
+      "do school",
+      "make dinner",
+      "crochet"
+    ]
+  }
+]
