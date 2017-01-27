@@ -1,12 +1,16 @@
+require('./api/data/dbconnection.js').open();
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
 
 var routes = require('./api/routes');
 
 app.set('port', 3030);
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(bodyParser.urlencoded({extende: false}));
 
 app.use('/api', routes);
 

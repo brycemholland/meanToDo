@@ -11,4 +11,8 @@ router
   .route('/users/:userId')
   .get(ctrlUsers.usersGetOne);
 
+router
+  .route('/users/new')
+  .post(ctrlUsers.usersAddOne);
+
 module.exports = router;
