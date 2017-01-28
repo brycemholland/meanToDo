@@ -1,3 +1,5 @@
+// This is for the MongoDB native driver. This has been replaced by db.js using Mongoose
+
 var MongoClient = require('mongodb').MongoClient;
 var dburl = 'mongodb://localhost:27017/meantodo';
 
@@ -10,7 +12,7 @@ var open = function(){
       return;
     }
     _connection = db;
-    console.log("DB connection open", db);
+    console.log("DB connection open");
   });
 };
 
