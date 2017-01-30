@@ -1,5 +1,8 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var bcrypt = require('bcrypt-nodejs');
+var jwt = require('jsonwebtoken');
+
 
 module.exports.usersGetAll = function(req, res){
 
@@ -53,18 +56,149 @@ module.exports.usersGetAll = function(req, res){
 
 };
 
+module.exports.register = function(req, res){
+
+  console.log("registering user");
+
+  var name = req.body.name;
+  var email = req.body.email;
+  var password = req.body.password;
+
+  User
+    .create({
+      name: name,
+      email: email,
+      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+    }, function(err, user){
+      if (err){
+        console.log("error creating user");
+        res
+          .status(400)
+          .json(err);
+      } else {
+        console.log("user created");
+        res
+          .status(201)
+          .json(user);
+      }
+    });
+};
+
+module.exports.login = function(req, res){
+  console.log("logging in user");
+
+  var email = req.body.email;
+  var password = req.body.password;
+  console.log(password);
+
+  User
+    .findOne({
+      email: email
+    }, function(err, user){
+      if (err){
+        console.log("error logging in");
+        res
+          .status(400)
+          .json(err);
+      } else {
+        if (bcrypt.compareSync(password, user.password)){ 
+          console.log("user logged in", user);
+          var token = jwt.sign({ email: user.email }, 's3cr3t', { expiresIn: 3600 });
+          res
+            .status(200)
+            .json({ success: true, token: token});
+        } else {
+          res
+            .status(401)
+            .json('unauthorized');
+        }
+      }
+    })
+};
+
+// module.exports.authenticate = function(req, res, next){
+//   var headerExists = req.headers.authorization;
+//   if (headerExists){
+//     var token = req.headers.authorization.split(' ')[1];
+//     jwt.verify(token, 's3cr3t', function(error, decoded){
+//       if (error){
+//         console.log(error);
+//         res
+//           .status(401)
+//           .json('unauthorized');
+//       } else {
+//         req.user = decoded.email;
+//         console.log(req.user);
+//         next();
+//       }
+//     }); 
+//   } else {
+//     res
+//       .status(403)
+//       .json('no token provided');
+//   }
+// };
+
+
 module.exports.usersGetOne = function(req, res){
+  var headerExists = req.headers.authorization;
+  if (headerExists){
+    var token = req.headers.authorization.split(' ')[1];
+    jwt.verify(token, 's3cr3t', function(error, decoded){
+      if (error){
+        console.log(error);
+        res
+          .status(401)
+          .json('unauthorized');
+      } else {
+        req.user = decoded.email;
+        User
+          // .findByI(userId)
+          .find({email: req.user})
+          .exec(function(err, doc){
+            var response = {
+              status: 200,
+              message: doc[0]
+            };
+            if (err){
+              console.log("error finding hotel");
+              response.status = 500
+              response.message = err;
+            } else if (!doc){
+              response.status = 404
+              response.message = {
+                "message": "user ID not found"
+              };
+            }
+            res
+              .status(response.status)
+              .json(response.message);
+          });
+      }
+    }); 
+  } else {
+    res
+      .status(403)
+      .json('no token provided');
+  }
+
+  
+};
+
+
+
+module.exports.usersUpdateOne = function(req, res){
   var userId = req.params.userId;
-  console.log("get userId", userId);
 
   User
     .findById(userId)
+    .select("-toDoList")
     .exec(function(err, doc){
+      var response = {
+        status: 200,
+        message: doc
+      };
       if (err){
-        var response ={
-          status: 200,
-          message: doc
-        };
         console.log("error finding hotel");
         response.status = 500
         response.message = err;
@@ -74,32 +208,43 @@ module.exports.usersGetOne = function(req, res){
           "message": "user ID not found"
         };
       }
-      res
-        .status(response.status)
-        .json(response.message);
+      if (res.status !== 200){ 
+        res
+          .status(response.status)
+          .json(response.message);
+      } else {
+        doc.name = req.body.name;
+        doc.email = req.body.email;
+
+        doc.save(function(err, userUpdated){
+          if (err){
+            res
+              .status(500)
+              .json(err);
+          } else {
+            res
+              .status(204)
+              .json();
+          }
+        });
+      }
     });
 };
 
-module.exports.usersAddOne = function(req, res){
-  var db = dbconn.get();
-  var collection = db.collection('users');
-  var newUser;
+module.exports.usersDeleteOne = function(req, res){
+  var userId = req.params.userId;
 
-  console.log("post new user");
-
-  if (req.body && req.body.name && req.body.email){ 
-    newUser = req.body;
-
-    collection.insertOne(newUser, function(err, response){
-      console.log(response.ops);
-      res
-        .status(201)
-        .json(response.ops);
+  User
+    .findByIdAndRemove(userId)
+    .exec(function(err, user){
+      if (err){
+        res
+          .status(404)
+          .json(err);
+      } else {
+        res
+          .status(204)
+          .json();
+      }
     });
-  } else {
-    console.log("data missing from body");
-    res
-      .status(400)
-      .json({ message: "required data missing from body"});
-  }
 };

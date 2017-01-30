@@ -10,7 +10,7 @@ app.set('port', 3030);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(bodyParser.urlencoded({extende: false}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', routes);
 

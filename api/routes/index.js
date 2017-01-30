@@ -8,11 +8,17 @@ router
   .get(ctrlUsers.usersGetAll);
 
 router
-  .route('/users/:userId')
-  .get(ctrlUsers.usersGetOne);
+  .route('/users/register')
+  .post(ctrlUsers.register);
 
 router
-  .route('/users/new')
-  .post(ctrlUsers.usersAddOne);
+  .route('/users/login')
+  .post(ctrlUsers.login);
+
+router
+  .route('/users/:userId')
+  .get(ctrlUsers.usersGetOne)
+  .put(ctrlUsers.usersUpdateOne)
+  .delete(ctrlUsers.usersDeleteOne);
 
 module.exports = router;
