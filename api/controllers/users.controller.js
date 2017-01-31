@@ -68,7 +68,8 @@ module.exports.register = function(req, res){
     .create({
       name: name,
       email: email,
-      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+      password: password
+      //password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
     }, function(err, user){
       if (err){
         console.log("error creating user");
@@ -86,34 +87,25 @@ module.exports.register = function(req, res){
 
 module.exports.login = function(req, res){
   console.log("logging in user");
-
   var email = req.body.email;
   var password = req.body.password;
-  console.log(password);
 
-  User
-    .findOne({
-      email: email
-    }, function(err, user){
-      if (err){
-        console.log("error logging in");
-        res
-          .status(400)
-          .json(err);
+  User.findOne({
+    email: email
+  }).exec(function(err, user){
+    if (err){
+      console.log(err);
+      res.status(400).json(err);
+    } else {
+      if (bcrypt.compareSync(password, user.password)){ 
+        console.log("user logged in", user);
+        var token = jwt.sign({ email: user.email }, 's3cr3t', { expiresIn: 3600 });
+        res.status(200).json({ success: true, token: token});
       } else {
-        if (bcrypt.compareSync(password, user.password)){ 
-          console.log("user logged in", user);
-          var token = jwt.sign({ email: user.email }, 's3cr3t', { expiresIn: 3600 });
-          res
-            .status(200)
-            .json({ success: true, token: token});
-        } else {
-          res
-            .status(401)
-            .json('unauthorized');
-        }
+        res.status(401).json('unauthorized');
       }
-    })
+    }
+  });
 };
 
 // module.exports.authenticate = function(req, res, next){
@@ -141,47 +133,29 @@ module.exports.login = function(req, res){
 
 
 module.exports.usersGetOne = function(req, res){
-  var headerExists = req.headers.authorization;
-  if (headerExists){
-    var token = req.headers.authorization.split(' ')[1];
-    jwt.verify(token, 's3cr3t', function(error, decoded){
-      if (error){
-        console.log(error);
-        res
-          .status(401)
-          .json('unauthorized');
-      } else {
-        req.user = decoded.email;
-        User
-          // .findByI(userId)
-          .find({email: req.user})
-          .exec(function(err, doc){
-            var response = {
-              status: 200,
-              message: doc[0]
-            };
-            if (err){
-              console.log("error finding hotel");
-              response.status = 500
-              response.message = err;
-            } else if (!doc){
-              response.status = 404
-              response.message = {
-                "message": "user ID not found"
-              };
-            }
-            res
-              .status(response.status)
-              .json(response.message);
-          });
-      }
-    }); 
-  } else {
-    res
-      .status(403)
-      .json('no token provided');
-  }
+  var userId = req.params.userId;
 
+  User
+    .findById(userId)
+    .exec(function(err, doc){
+      var response = {
+        status: 200,
+        message: doc
+      };
+      if (err){
+        console.log("error finding hotel");
+        response.status = 500
+        response.message = err;
+      } else if (!doc){
+        response.status = 404
+        response.message = {
+          "message": "user ID not found"
+        };
+      }
+      res
+        .status(response.status)
+        .json(response.message);
+    });
   
 };
 

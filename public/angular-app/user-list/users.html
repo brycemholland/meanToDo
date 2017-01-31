@@ -1,0 +1,5 @@
+<h2>{{ vm.title }}</h2>
+
+<ul>
+  <li ng-repeat="user in vm.users"><a ng-href="#!/users/{{ user._id }}">{{ user.name }} – {{ user._id }}</a></li>
+</ul>
