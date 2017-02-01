@@ -68,8 +68,7 @@ module.exports.register = function(req, res){
     .create({
       name: name,
       email: email,
-      password: password
-      //password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+      password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
     }, function(err, user){
       if (err){
         console.log("error creating user");
@@ -85,28 +84,28 @@ module.exports.register = function(req, res){
     });
 };
 
-module.exports.login = function(req, res){
-  console.log("logging in user");
-  var email = req.body.email;
-  var password = req.body.password;
+// module.exports.login = function(req, res){
+//   console.log("logging in user");
+//   var email = req.body.email;
+//   var password = req.body.password;
 
-  User.findOne({
-    email: email
-  }).exec(function(err, user){
-    if (err){
-      console.log(err);
-      res.status(400).json(err);
-    } else {
-      if (bcrypt.compareSync(password, user.password)){ 
-        console.log("user logged in", user);
-        var token = jwt.sign({ email: user.email }, 's3cr3t', { expiresIn: 3600 });
-        res.status(200).json({ success: true, token: token});
-      } else {
-        res.status(401).json('unauthorized');
-      }
-    }
-  });
-};
+//   User.findOne({
+//     email: email
+//   }).exec(function(err, user){
+//     if (err){
+//       console.log(err);
+//       res.status(400).json(err);
+//     } else {
+//       if (bcrypt.compareSync(password, user.password)){ 
+//         console.log("user logged in", user);
+//         var token = jwt.sign({ email: user.email }, 's3cr3t', { expiresIn: 3600 });
+//         res.status(200).json({ success: true, token: token});
+//       } else {
+//         res.status(401).json('unauthorized');
+//       }
+//     }
+//   });
+// };
 
 // module.exports.authenticate = function(req, res, next){
 //   var headerExists = req.headers.authorization;

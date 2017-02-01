@@ -1,1 +1,14 @@
 <h2>{{ vm.user.name }}</h2>
+<h4>{{ vm.user.email }}</h4>
+<div>number of tasks: {{ vm.user.toDoList.length }}</div>
+
+<div ng-if="vm.user.toDoList">
+  <ul>
+    <li ng-repeat="task in vm.user.toDoList">{{ task.task }} <i ng-click="vm.deleteTask(task._id)">delete</i></li>
+  </ul>
+</div>
+
+<form name="taskForm" ng-submit="vm.addTask()">
+  <label>task: </label><input type="text" name="newTask" required ng-model="vm.newTask">
+  <button type="submit">submit</button>
+</form>

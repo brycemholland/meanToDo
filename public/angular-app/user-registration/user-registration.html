@@ -1,6 +1,13 @@
+<div ng-if="vm.message">
+  {{ vm.message }}
+</div>
+<div ng-if="vm.error">
+  {{ vm.error }}
+</div>
+
 <form name="registrationForm" ng-submit="vm.registerUser()">
-  <label>name: </label><input type="text" name="name" required>
-  <label>email: </label><input type="email" name="email" required>
-  <label>password: </label><input type="password" name="password" required>
+  <label>name: </label><input type="text" name="name" required ng-model="vm.name">
+  <label>email: </label><input type="email" name="email" required ng-model="vm.email">
+  <label>password: </label><input type="password" name="password" required ng-model="vm.password">
   <button type="submit">submit</button>
 </form>

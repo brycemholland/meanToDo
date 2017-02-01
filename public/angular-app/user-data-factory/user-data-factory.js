@@ -3,24 +3,15 @@ angular.module('meantodo').factory('userDataFactory', userDataFactory);
 function userDataFactory($http){
   return{
     userList: userList,
-    userDisplay: userDisplay,
-    userRegister: userRegister
+    userDisplay: userDisplay
   };
 
   function userList(){
-    return $http.get('/api/users').then(complete).catch(failed);
+    return $http.get('/api/users').catch(failed);
   }
 
   function userDisplay(id){
-    return $http.get('/api/users/' + id).then(complete).catch(failed);
-  }
-
-  function userRegister(postData){
-    return $http.post('/api/users/register').then(complete).catch(failed);
-  }
-
-  function complete(response){
-    return response.data;
+    return $http.get('/api/users/' + id).catch(failed);
   }
 
   function failed(error){

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var ctrlUsers = require('../controllers/users.controller.js');
+var ctrlTasks = require('../controllers/tasks.controller.js');
 
 router
   .route('/users')
@@ -20,5 +21,14 @@ router
   .get(ctrlUsers.usersGetOne)
   .put(ctrlUsers.usersUpdateOne)
   .delete(ctrlUsers.usersDeleteOne);
+
+router
+  .route('/users/:userId/tasks')
+  .get(ctrlTasks.tasksGetAll)
+  .post(ctrlTasks.tasksAddOne);
+
+router
+  .route('/users/:userId/tasks/:taskId')
+  .delete(ctrlTasks.tasksDeleteOne);
 
 module.exports = router;
