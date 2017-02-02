@@ -1,23 +1,37 @@
-<h2>{{ vm.user.name }}</h2>
-<h4>{{ vm.user.email }}</h4>
-<div>number of tasks: {{ vm.user.toDoList.length }}</div>
+<div class="user-info">{{ vm.user.name }}</div>
+<!-- <div>number of tasks: {{ vm.user.toDoList.length }}</div> -->
 
 <div ng-if="vm.user.toDoList">
   <ul class="tasks-container">
     <li ng-repeat="task in vm.user.toDoList track by $index" class="task-container">
-      <div class="task active">{{ task.task }}</div>
-      <form name="taskUpdateForm" ng-submit="vm.updateTask($index, task._id)" class="task">
+
+      <div class="task-show active">
+        <div class="task-text" ng-click="vm.showEditMode($index)">{{ task.task }}</div>
+        <div class="task-buttons-container">
+          <div class="edit-task-button" ng-click="vm.showEditMode($index)">edit</div>
+        </div>
+      </div>
+
+      <form name="taskUpdateForm" ng-submit="vm.updateTask($index, task._id)" class="task-form">
         <input type="text" name="updatedTask" required ng-model="task.task"/>
         <input type="hidden" name="taskId" ng-value="task._id"/>
-        <button type="submit">change task</button>
-        <button>cancel</button>
+        <div class="task-buttons-container">
+          <button type="submit" class="edit-task-button">change</button>
+          <div class="edit-task-button" ng-click="vm.hideEditMode($index)">cancel</div>
+          <div class="edit-task-button" ng-click="vm.deleteTask(task._id)">delete</div>
+        </div>
       </form>
-      <button ng-click="vm.deleteTask(task._id)">delete</button>
+
     </li>
   </ul>
 </div>
 
-<form name="taskForm" ng-submit="vm.addTask()">
-  <label>task: </label><input type="text" name="newTask" required ng-model="vm.newTask">
-  <button type="submit">make new task</button>
+<form class="new-task-container" name="taskForm" ng-submit="vm.addTask()">
+  <div class="task-container">
+    <div class='new-task-form active'>
+      <input type="text" name="newTask" placeholder="New Task" required ng-model="vm.newTask">
+      <div class="task-buttons-container">
+        <button type="submit" class="edit-task-button">make new task</button>
+      </div>
+  </div>
 </form>

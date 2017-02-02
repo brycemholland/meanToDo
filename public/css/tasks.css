@@ -1,25 +1,59 @@
-.tasks-container {
+.user-info {
+  color: #999999;
+  font-size: 25px;
+  padding: 1vw;
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0; }
+
+.tasks-container, .new-task-container {
   list-style: none;
   margin: auto;
   padding: 0;
-  width: 50%; }
-  .tasks-container .task-container {
-    border: red thin solid;
-    margin: 5vw;
+  width: 90%; }
+  .tasks-container .task-container, .new-task-container .task-container {
+    min-height: 15vw;
+    position: relative;
     text-align: center; }
-    .tasks-container .task-container .task {
-      cursor: pointer;
-      display: none;
-      font-size: 24px; }
-      .tasks-container .task-container .task.active {
-        display: block; }
-    .tasks-container .task-container .task-form {
+    .tasks-container .task-container .task-show, .tasks-container .task-container .task-form, .tasks-container .task-container .new-task-form, .new-task-container .task-container .task-show, .new-task-container .task-container .task-form, .new-task-container .task-container .new-task-form {
       display: none; }
-      .tasks-container .task-container .task-form.active {
-        display: block; }
-      .tasks-container .task-container .task-form input[type="text"] {
-        display: block;
-        font-family: serif;
-        font-size: 24px;
+      .tasks-container .task-container .task-show .task-text, .tasks-container .task-container .task-show input[type="text"], .tasks-container .task-container .task-form .task-text, .tasks-container .task-container .task-form input[type="text"], .tasks-container .task-container .new-task-form .task-text, .tasks-container .task-container .new-task-form input[type="text"], .new-task-container .task-container .task-show .task-text, .new-task-container .task-container .task-show input[type="text"], .new-task-container .task-container .task-form .task-text, .new-task-container .task-container .task-form input[type="text"], .new-task-container .task-container .new-task-form .task-text, .new-task-container .task-container .new-task-form input[type="text"] {
+        background-color: transparent;
+        font-family: "Libre Baskerville", serif;
+        font-weight: 700;
+        font-size: 50px;
         margin: auto;
+        text-align: center;
+        width: 50%; }
+      .tasks-container .task-container .task-show input[type="text"], .tasks-container .task-container .task-form input[type="text"], .tasks-container .task-container .new-task-form input[type="text"], .new-task-container .task-container .task-show input[type="text"], .new-task-container .task-container .task-form input[type="text"], .new-task-container .task-container .new-task-form input[type="text"] {
+        border: none;
+        border-bottom: 0px black solid;
+        outline: none;
+        padding: 0; }
+      .tasks-container .task-container .task-show.active, .tasks-container .task-container .task-form.active, .tasks-container .task-container .new-task-form.active, .new-task-container .task-container .task-show.active, .new-task-container .task-container .task-form.active, .new-task-container .task-container .new-task-form.active {
+        display: block; }
+        .tasks-container .task-container .task-show.active input[type="text"], .tasks-container .task-container .task-form.active input[type="text"], .tasks-container .task-container .new-task-form.active input[type="text"], .new-task-container .task-container .task-show.active input[type="text"], .new-task-container .task-container .task-form.active input[type="text"], .new-task-container .task-container .new-task-form.active input[type="text"] {
+          border-bottom: 2px black solid;
+          outline: none;
+          padding: 0; }
+      .tasks-container .task-container .task-show .task-buttons-container, .tasks-container .task-container .task-form .task-buttons-container, .tasks-container .task-container .new-task-form .task-buttons-container, .new-task-container .task-container .task-show .task-buttons-container, .new-task-container .task-container .task-form .task-buttons-container, .new-task-container .task-container .new-task-form .task-buttons-container {
+        box-sizing: border-box;
+        padding: 0 1vw;
         text-align: center; }
+        .tasks-container .task-container .task-show .task-buttons-container button, .tasks-container .task-container .task-form .task-buttons-container button, .tasks-container .task-container .new-task-form .task-buttons-container button, .new-task-container .task-container .task-show .task-buttons-container button, .new-task-container .task-container .task-form .task-buttons-container button, .new-task-container .task-container .new-task-form .task-buttons-container button {
+          background: none;
+          border: none;
+          font-family: "Libre Baskerville", serif;
+          outline: none;
+          padding: 0;
+          -webkit-appearance: none; }
+        .tasks-container .task-container .task-show .task-buttons-container .edit-task-button, .tasks-container .task-container .task-form .task-buttons-container .edit-task-button, .tasks-container .task-container .new-task-form .task-buttons-container .edit-task-button, .new-task-container .task-container .task-show .task-buttons-container .edit-task-button, .new-task-container .task-container .task-form .task-buttons-container .edit-task-button, .new-task-container .task-container .new-task-form .task-buttons-container .edit-task-button {
+          color: #999999;
+          cursor: pointer;
+          display: inline-block;
+          font-style: italic;
+          font-size: 25px;
+          padding: 1vw; }
+          .tasks-container .task-container .task-show .task-buttons-container .edit-task-button:hover, .tasks-container .task-container .task-form .task-buttons-container .edit-task-button:hover, .tasks-container .task-container .new-task-form .task-buttons-container .edit-task-button:hover, .new-task-container .task-container .task-show .task-buttons-container .edit-task-button:hover, .new-task-container .task-container .task-form .task-buttons-container .edit-task-button:hover, .new-task-container .task-container .new-task-form .task-buttons-container .edit-task-button:hover {
+            color: #212121; }

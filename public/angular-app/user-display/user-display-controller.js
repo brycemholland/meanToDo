@@ -7,6 +7,21 @@ function UserController(userDataFactory, $routeParams, $http, $httpParamSerializ
     vm.user = response.data;
   });
 
+  vm.showEditMode = function(index){
+    var $thisTask = $('.task-show').eq(index);
+    $('.task-show').addClass('active');
+    $('.task-form').removeClass('active');
+    $thisTask.removeClass('active');
+    $thisTask.siblings('.task-form').addClass('active');
+    $thisTask.siblings('.task-form').find('input[type="text"]').focus();
+  };
+
+  vm.hideEditMode = function(index){
+    var $thisTask = $('.task-form').eq(index);
+    $thisTask.toggleClass('active');
+    $thisTask.siblings('.task-show').toggleClass('active');
+  };
+
   vm.addTask = function(){
     var task = {
       task: vm.newTask

@@ -1,11 +1,19 @@
 <html ng-app="meantodo">
 <head>
-  <title>MEAN To-Do List</title>
+  <title>Fantastic To-Do List</title>
+  <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
+
+  <link href="css/master.css" rel="stylesheet"/>
+  <link href="css/global.css" rel="stylesheet"/>
   <link href="css/tasks.css" rel="stylesheet"/>
 </head>
 
 <body>
-  <h1>Hello world</h1>
+  <div class="header">
+    <a ng-href="/">
+      <h1>todo</h1>
+    </a>
+  </div>
 
   <div ng-view></div>
 
@@ -18,7 +26,5 @@
   <script src="angular-app/user-display/user-display-controller.js"></script>
   <script src="angular-app/user-data-factory/user-data-factory.js"></script>
   <script src="angular-app/user-registration/user-registration-controller.js"></script>
-  
-  <script src="javascript/tasks.js"></script>
 </body>
 </html>
