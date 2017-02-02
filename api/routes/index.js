@@ -12,9 +12,9 @@ router
   .route('/users/register')
   .post(ctrlUsers.register);
 
-router
-  .route('/users/login')
-  .post(ctrlUsers.login);
+// router
+//   .route('/users/login')
+//   .post(ctrlUsers.login);
 
 router
   .route('/users/:userId')
@@ -29,6 +29,7 @@ router
 
 router
   .route('/users/:userId/tasks/:taskId')
+  .put(ctrlTasks.tasksUpdateOne)
   .delete(ctrlTasks.tasksDeleteOne);
 
 module.exports = router;

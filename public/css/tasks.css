@@ -1,0 +1,25 @@
+.tasks-container {
+  list-style: none;
+  margin: auto;
+  padding: 0;
+  width: 50%; }
+  .tasks-container .task-container {
+    border: red thin solid;
+    margin: 5vw;
+    text-align: center; }
+    .tasks-container .task-container .task {
+      cursor: pointer;
+      display: none;
+      font-size: 24px; }
+      .tasks-container .task-container .task.active {
+        display: block; }
+    .tasks-container .task-container .task-form {
+      display: none; }
+      .tasks-container .task-container .task-form.active {
+        display: block; }
+      .tasks-container .task-container .task-form input[type="text"] {
+        display: block;
+        font-family: serif;
+        font-size: 24px;
+        margin: auto;
+        text-align: center; }

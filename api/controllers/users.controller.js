@@ -142,7 +142,7 @@ module.exports.usersGetOne = function(req, res){
         message: doc
       };
       if (err){
-        console.log("error finding hotel");
+        console.log("error finding user");
         response.status = 500
         response.message = err;
       } else if (!doc){
@@ -172,7 +172,7 @@ module.exports.usersUpdateOne = function(req, res){
         message: doc
       };
       if (err){
-        console.log("error finding hotel");
+        console.log("error finding user");
         response.status = 500
         response.message = err;
       } else if (!doc){

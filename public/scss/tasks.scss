@@ -1,0 +1,32 @@
+.tasks-container{
+  list-style: none;
+  margin: auto;
+  padding: 0;
+  width: 50%;
+  .task-container{
+    border: red thin solid;
+    margin: 5vw;
+    text-align: center;
+    .task{
+      cursor: pointer;
+      display: none;
+      font-size: 24px;
+      &.active{
+        display: block;
+      }
+    }
+    .task-form{
+      display: none;
+      &.active{
+        display: block;
+      }
+      input[type="text"]{
+        display: block;
+        font-family: serif;
+        font-size: 24px;
+        margin: auto;
+        text-align: center;
+      }
+    }
+  }
+}

@@ -24,13 +24,33 @@ function UserController(userDataFactory, $routeParams, $http, $httpParamSerializ
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).then(function(result){
         console.log(result);
-        vm.message = 'Registration successful!';
+        vm.message = 'Task created!';
         vm.error = '';
         $route.reload();
       }).catch(function(error){
         console.log(error);
       });
     }
+
+  };
+
+  vm.updateTask = function(index, taskId){
+    var task = vm.user.toDoList[index];
+    task.index = index;
+  
+    $http({
+      method: 'PUT',
+      url: '/api/users/'+ userId +'/tasks/'+ taskId,
+      data: $httpParamSerializerJQLike(task),
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).then(function(result){
+      console.log(result);
+      vm.message = 'Task updated!';
+      vm.error = '';
+      $route.reload();
+    }).catch(function(error){
+      console.log(error);
+    });
 
   };
 

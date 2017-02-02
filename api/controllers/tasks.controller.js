@@ -27,7 +27,8 @@ module.exports.tasksGetAll = function(req, res){
         .status(response.status)
         .json(response.message);
     });
-}
+};
+
 
 var _addTask = function(req, res, user){
 
@@ -50,9 +51,8 @@ var _addTask = function(req, res, user){
 
 };
 
-module.exports.tasksAddOne = function(req, res){
-  console.log("adding task");
 
+module.exports.tasksAddOne = function(req, res){
   var userId = req.params.userId;
 
   User
@@ -64,7 +64,7 @@ module.exports.tasksAddOne = function(req, res){
         message: doc
       };
       if (err){
-        console.log("error finding hotel");
+        console.log("error finding user");
         response.status = 500
         response.message = err;
       } else if (!doc){
@@ -82,6 +82,53 @@ module.exports.tasksAddOne = function(req, res){
       }
     });
 };
+
+
+module.exports.tasksUpdateOne = function(req, res){
+  console.log('updating task');
+  var userId = req.params.userId;
+
+  User
+    .findById(userId)
+    .select("toDoList")
+    .exec(function(err, doc){
+      var response = {
+        status: 200,
+        message: doc
+      };
+      console.log(doc.toDoList[req.body.index]);
+      if (err){
+        console.log("error finding user");
+        response.status = 500
+        response.message = err;
+      } else if (!doc){
+        response.status = 404
+        response.message = {
+          "message": "user ID not found"
+        };
+      }
+      if (response.status !== 200){ 
+        res
+          .status(response.status)
+          .json(response.message);
+      } else {
+        doc.toDoList[req.body.index].task = req.body.task;
+
+        doc.save(function(err, userUpdated){
+          if (err){
+            res
+              .status(500)
+              .json(err);
+          } else {
+            res
+              .status(204)
+              .json();
+          }
+        });
+      }
+    });
+};
+
 
 module.exports.tasksDeleteOne = function(req, res){
   var userId = req.params.userId;
