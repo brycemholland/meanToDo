@@ -1,11 +1,21 @@
 angular.module('meantodo').controller('UserController', UserController);
 
-function UserController(userDataFactory, $routeParams, $http, $httpParamSerializerJQLike, $route){
+function UserController(userDataFactory, $routeParams, $http, $httpParamSerializerJQLike, $route, $anchorScroll, $timeout, $scope){
   var vm = this;
   var userId = $routeParams.id;
   userDataFactory.userDisplay(userId).then(function(response){
     vm.user = response.data;
   });
+
+  // $scope.$on('$viewContentLoaded', function() {
+  //   vm.scrollToElement('new-task-container');
+  // });
+
+  // vm.scrollToElement = function(element){
+  //   $anchorScroll(element);
+  // };
+
+  $('input[name="newTask"]').focus();
 
   vm.showEditMode = function(index){
     var $thisTask = $('.task-show').eq(index);

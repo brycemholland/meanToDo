@@ -6,8 +6,42 @@ html, body{
   font-family: $primaryFontFamily;
   margin: 0;
   min-height: 100vh;
+  overflow: auto;
   padding: 0;
   width: 100vw;
+}
+
+button{
+  background: none;
+  border: none;
+  color: $colorMed;
+  cursor: pointer;
+  font-family: $primaryFontFamily;
+  font-style: italic;
+  font-size: $fontSizeSmall;
+  padding: $spacingSmall;
+  outline: none;
+  -webkit-appearance: none;
+  &:hover{
+    color: $colorDark;
+  }
+}
+
+form{
+  text-align: center;
+  input[type="text"], input[type="email"], input[type="password"]{
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px black solid;
+    display: block;
+    font-family: $primaryFontFamily;
+    font-weight: 700;
+    font-size: $fontSizeLarge;
+    margin: $spacingMed auto;
+    outline: none;
+    padding: 0;
+    text-align: center;
+  }
 }
 
 .header{
@@ -31,4 +65,11 @@ html, body{
       }
     }
   }
+}
+
+.main-container{
+  list-style: none;
+  margin: auto;
+  padding: 0;
+  width: 90%;
 }

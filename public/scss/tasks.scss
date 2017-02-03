@@ -16,7 +16,8 @@
   padding: 0;
   width: 90%;
   .task-container{
-    min-height: $spacingLarge;
+    //min-height: $spacingLarge;
+    margin: $spacingMed 0;
     position: relative;
     text-align: center;
     .task-show, .task-form, .new-task-form{
@@ -28,7 +29,7 @@
         font-size: $fontSizeLarge;
         margin: auto;
         text-align: center;
-        width: 50%;
+        width: 100%;
       }
       input[type="text"]{
         border: none;
@@ -48,14 +49,14 @@
         box-sizing: border-box;
         padding: 0 $spacingSmall;
         text-align: center;
-        button{
-          background: none;
-          border: none;
-          font-family: $primaryFontFamily;
-          outline: none;
-          padding: 0;
-          -webkit-appearance: none;
-        }
+        // button{
+        //   background: none;
+        //   border: none;
+        //   font-family: $primaryFontFamily;
+        //   outline: none;
+        //   padding: 0;
+        //   -webkit-appearance: none;
+        // }
         .edit-task-button{
           color: $colorMed;
           cursor: pointer;
@@ -70,4 +71,8 @@
       }
     }
   }
+}
+
+.tasks-container{
+  position: relative;
 }
