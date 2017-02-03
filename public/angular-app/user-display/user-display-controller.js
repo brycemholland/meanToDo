@@ -1,19 +1,11 @@
 angular.module('meantodo').controller('UserController', UserController);
 
-function UserController(userDataFactory, $routeParams, $http, $httpParamSerializerJQLike, $route, $anchorScroll, $timeout, $scope){
+function UserController(userDataFactory, $routeParams, $http, $httpParamSerializerJQLike, $route){
   var vm = this;
   var userId = $routeParams.id;
   userDataFactory.userDisplay(userId).then(function(response){
     vm.user = response.data;
   });
-
-  // $scope.$on('$viewContentLoaded', function() {
-  //   vm.scrollToElement('new-task-container');
-  // });
-
-  // vm.scrollToElement = function(element){
-  //   $anchorScroll(element);
-  // };
 
   $('input[name="newTask"]').focus();
 
@@ -24,12 +16,21 @@ function UserController(userDataFactory, $routeParams, $http, $httpParamSerializ
     $thisTask.removeClass('active');
     $thisTask.siblings('.task-form').addClass('active');
     $thisTask.siblings('.task-form').find('input[type="text"]').focus();
+
+    // $('.task-show').fadeIn();
+    // $('.task-form').fadeOut();
+    // $thisTask.fadeOut();
+    // $thisTask.siblings('.task-form').fadeIn();
+    // $thisTask.siblings('.task-form').find('input[type="text"]').focus();
   };
 
   vm.hideEditMode = function(index){
     var $thisTask = $('.task-form').eq(index);
     $thisTask.toggleClass('active');
     $thisTask.siblings('.task-show').toggleClass('active');
+
+    // $thisTask.fadeOut();
+    // $thisTask.siblings('.task-show').fadeIn();
   };
 
   vm.addTask = function(){

@@ -3,7 +3,7 @@
 
 <ul class="tasks-container" ng-if="vm.user.toDoList">
   <!-- <li ng-repeat="task in vm.user.toDoList | orderBy:'+':true track by $index" class="task-container"> -->
-  <li ng-repeat="task in vm.user.toDoList track by $index" class="task-container">
+  <li ng-repeat="task in vm.user.toDoList track by $index" class="task-container" my-repeat-directive>
 
     <div class="task-show active">
       <div class="task-text" ng-click="vm.showEditMode($index)">{{ task.task }}</div>

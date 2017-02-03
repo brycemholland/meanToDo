@@ -18,7 +18,6 @@ button{
   cursor: pointer;
   font-family: $primaryFontFamily;
   font-style: italic;
-  font-size: $fontSizeSmall;
   padding: $spacingSmall;
   outline: none;
   -webkit-appearance: none;
@@ -36,7 +35,6 @@ form{
     display: block;
     font-family: $primaryFontFamily;
     font-weight: 700;
-    font-size: $fontSizeLarge;
     margin: $spacingMed auto;
     outline: none;
     padding: 0;
@@ -45,13 +43,14 @@ form{
 }
 
 .header{
-  height: $fontSizeLarge*2;
+  left: 0;
+  position: fixed;
+  top: 0;
   a{
     cursor: pointer;
     text-decoration: none;
     h1{
       display: block;
-      font-size: $fontSizeSmall;
       text-align: left;
       color: $colorDark;
       left: 0;

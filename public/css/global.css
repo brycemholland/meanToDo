@@ -15,7 +15,6 @@ button {
   cursor: pointer;
   font-family: "Libre Baskerville", serif;
   font-style: italic;
-  font-size: 25px;
   padding: 1vw;
   outline: none;
   -webkit-appearance: none; }
@@ -31,20 +30,20 @@ form {
     display: block;
     font-family: "Libre Baskerville", serif;
     font-weight: 700;
-    font-size: 50px;
     margin: 5vw auto;
     outline: none;
     padding: 0;
     text-align: center; }
 
 .header {
-  height: 100px; }
+  left: 0;
+  position: fixed;
+  top: 0; }
   .header a {
     cursor: pointer;
     text-decoration: none; }
     .header a h1 {
       display: block;
-      font-size: 25px;
       text-align: left;
       color: #212121;
       left: 0;
