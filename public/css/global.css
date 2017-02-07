@@ -1,6 +1,6 @@
 html, body {
-  background-color: #eeeeee;
-  color: #212121;
+  background-color: #212121;
+  color: white;
   font-family: "Libre Baskerville", serif;
   margin: 0;
   min-height: 100vh;
@@ -11,10 +11,11 @@ html, body {
 button {
   background: none;
   border: none;
-  color: #999999;
+  color: white;
   cursor: pointer;
   font-family: "Libre Baskerville", serif;
   font-style: italic;
+  opacity: 0.5;
   padding: 1vw;
   outline: none;
   -webkit-appearance: none; }
@@ -26,7 +27,7 @@ form {
   form input[type="text"], form input[type="email"], form input[type="password"] {
     background-color: transparent;
     border: none;
-    border-bottom: 2px black solid;
+    border-bottom: 2px white solid;
     display: block;
     font-family: "Libre Baskerville", serif;
     font-weight: 700;
@@ -45,7 +46,7 @@ form {
     .header a h1 {
       display: block;
       text-align: left;
-      color: #212121;
+      color: white;
       left: 0;
       margin: 0;
       padding: 1vw;
@@ -53,7 +54,7 @@ form {
       top: 0;
       width: auto; }
       .header a h1:hover {
-        color: #999999; }
+        opacity: 0.5; }
 
 .main-container {
   list-style: none;

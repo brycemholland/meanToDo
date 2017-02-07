@@ -1,8 +1,8 @@
 @import 'master';
 
 html, body{
-  background-color: $colorLight;
-  color: $colorDark;
+  background-color: $colorDark;
+  color: $colorLight;
   font-family: $primaryFontFamily;
   margin: 0;
   min-height: 100vh;
@@ -14,10 +14,11 @@ html, body{
 button{
   background: none;
   border: none;
-  color: $colorMed;
+  color: $colorLight;
   cursor: pointer;
   font-family: $primaryFontFamily;
   font-style: italic;
+  opacity: $transparency;
   padding: $spacingSmall;
   outline: none;
   -webkit-appearance: none;
@@ -31,7 +32,7 @@ form{
   input[type="text"], input[type="email"], input[type="password"]{
     background-color: transparent;
     border: none;
-    border-bottom: 2px black solid;
+    border-bottom: 2px $colorLight solid;
     display: block;
     font-family: $primaryFontFamily;
     font-weight: 700;
@@ -52,7 +53,7 @@ form{
     h1{
       display: block;
       text-align: left;
-      color: $colorDark;
+      color: $colorLight;
       left: 0;
       margin: 0;
       padding: $spacingSmall;
@@ -60,7 +61,7 @@ form{
       top: 0;
       width: auto;
       &:hover{
-        color: $colorMed;
+        opacity: $transparency;
       }
     }
   }
