@@ -13,7 +13,7 @@
     </div>
 
     <form name="taskUpdateForm" ng-submit="vm.updateTask($index, task._id)" class="task-form">
-      <input type="text" name="updatedTask" required ng-model="task.task"/>
+      <input type="text" name="updatedTask" autocomplete="off" required ng-model="task.task"/>
       <input type="hidden" name="taskId" ng-value="task._id"/>
       <div class="task-buttons-container">
         <button type="submit" class="edit-task-button">change</button>
@@ -28,7 +28,7 @@
 <form class="new-task-container" id="new-task-container" name="taskForm" ng-submit="vm.addTask()">
   <div class="task-container">
     <div class='new-task-form active'>
-      <input type="text" name="newTask" placeholder="New Task" required ng-model="vm.newTask">
+      <input type="text" name="newTask" placeholder="New Task" autocomplete="off" required ng-model="vm.newTask">
       <div class="task-buttons-container">
         <button type="submit" class="edit-task-button">make new task</button>
       </div>
