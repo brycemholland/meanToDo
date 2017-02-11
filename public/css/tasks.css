@@ -36,7 +36,7 @@
         padding: 0; }
       .tasks-container .task-container .task-show .task-buttons-container, .tasks-container .task-container .task-form .task-buttons-container, .tasks-container .task-container .new-task-form .task-buttons-container, .new-task-container .task-container .task-show .task-buttons-container, .new-task-container .task-container .task-form .task-buttons-container, .new-task-container .task-container .new-task-form .task-buttons-container {
         box-sizing: border-box;
-        padding: 0 1vw;
+        padding: 0;
         text-align: center; }
         .tasks-container .task-container .task-show .task-buttons-container .edit-task-button, .tasks-container .task-container .task-form .task-buttons-container .edit-task-button, .tasks-container .task-container .new-task-form .task-buttons-container .edit-task-button, .new-task-container .task-container .task-show .task-buttons-container .edit-task-button, .new-task-container .task-container .task-form .task-buttons-container .edit-task-button, .new-task-container .task-container .new-task-form .task-buttons-container .edit-task-button {
           color: white;

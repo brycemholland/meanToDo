@@ -2,8 +2,7 @@
 <!-- <div>number of tasks: {{ vm.user.toDoList.length }}</div> -->
 
 <ul class="tasks-container" ng-if="vm.user.toDoList">
-  <!-- <li ng-repeat="task in vm.user.toDoList | orderBy:'+':true track by $index" class="task-container"> -->
-  <li ng-repeat="task in vm.user.toDoList track by $index" class="task-container" my-repeat-directive>
+  <li ng-repeat="task in vm.user.toDoList track by $index" class="task-container" font-size-directive>
 
     <div class="task-show active">
       <div class="task-text" ng-click="vm.showEditMode($index)">{{ task.task }}</div>
@@ -25,7 +24,7 @@
   </li>
 </ul>
 
-<form class="new-task-container" id="new-task-container" name="taskForm" ng-submit="vm.addTask()">
+<form class="new-task-container" id="new-task-container" name="taskForm" ng-submit="vm.addTask()" font-size-directive>
   <div class="task-container">
     <div class='new-task-form active'>
       <input type="text" name="newTask" placeholder="New Task" autocomplete="off" required ng-model="vm.newTask">

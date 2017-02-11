@@ -1,4 +1,4 @@
-angular.module('meantodo').directive('myRepeatDirective', function() {
+angular.module('meantodo').directive('fontSizeDirective', function() {
   return function(scope, element, attrs) {
     var standardFontSize = 7;
     var screenRatio = $(window).width()/$(window).height();

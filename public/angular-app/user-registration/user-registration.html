@@ -5,9 +5,10 @@
   {{ vm.error }}
 </div>
 
-<form name="registrationForm" ng-submit="vm.registerUser()">
+<form name="registrationForm" ng-submit="vm.registerUser()" font-size-directive>
   <input type="text" name="name" placeholder="Name" required ng-model="vm.name">
   <input type="email" name="email" placeholder="Email" required ng-model="vm.email">
   <input type="password" name="password" placeholder="Password" required ng-model="vm.password">
+  <input type="password" name="password-repeat" placeholder="Repeat Password" required ng-model="vm.passwordRepeat">
   <button type="submit">submit</button>
 </form>
